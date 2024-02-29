@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
+    tools{
+        maven "mymaven"
+    }
     stages {
         stage('Compile') {
             steps {
                script{
                    echo "Compile the Code "
+                   sh "mvn compile"
                }
             }
         }
@@ -13,6 +17,7 @@ pipeline {
             steps {
                script{
                    echo "Unit Test the Code "
+                   sh "mvn test"
                }
             }
         }
@@ -20,6 +25,7 @@ pipeline {
             steps {
                script{
                    echo "Package the Code "
+                   sh "mvn package"
                }
             }
         }
